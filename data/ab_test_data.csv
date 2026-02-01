@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as np
+
+np.random.seed(42)
+
+# Simulate A/B test data
+n_users = 10000
+
+# Control group (baseline 8% conversion)
+control = pd.DataFrame({
+    'user_id': range(1, n_users//2 + 1),
+    'variant': 'control',
+    'converted': np.random.binomial(1, 0.08, n_users//2)
+})
+
+# Treatment group (10% conversion - 25% relative lift)
+treatment = pd.DataFrame({
+    'user_id': range(n_users//2 + 1, n_users + 1),
+    'variant': 'treatment',
+    'converted': np.random.binomial(1, 0.10, n_users//2)
+})
+
+# Combine
+df = pd.concat([control, treatment], ignore_index=True)
+
+# Save
+df.to_csv('data/ab_test_data.csv', index=False)
+print(f"Generated {len(df)} records")
+print(df.groupby('variant')['converted'].agg(['sum', 'mean']))
