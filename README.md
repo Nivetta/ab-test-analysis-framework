@@ -50,11 +50,4 @@ Nivetta T - [LinkedIn](https://www.linkedin.com/in/nivetta-t)
 
 ---
 
-## **Step 2: Create requirements.txt (5 min)**
-```
-pandas==2.0.0
-numpy==1.24.0
-scipy==1.10.0
-statsmodels==0.14.0
-matplotlib==3.7.0
-jupyter==1.0.0
+
